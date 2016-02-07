@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="//netflix.github.io/falcor/build/falcor.browser.js"></script>
+    <script>
+      var model = new falcor.Model({source: new falcor.HttpDataSource('/model.json')})
+
+      model.get('greeting')
+        .then(function(response){
+          document.write(response.json.greeting)
+        })
+    </script>
+  </body>
+</html>
