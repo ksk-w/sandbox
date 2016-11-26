@@ -1,13 +1,19 @@
-import * as types from '../constants/conter';
+export const types = {
+  INCREMENT: 'counter/INCREMENT',
+  DECREMENT: 'counter/DECREMENT',
+};
 
-export function increment() {
-  return {
+export const increment = () => ({
     type: types.INCREMENT,
-  };
-}
+});
 
-export function decrement() {
-  return {
+export const decrement = () => ({
     type: types.DECREMENT,
-  };
-}
+});
+
+export const delayIncrement = () => async (dispatch) => {
+  await delay(500);
+  dispatch(increment());
+};
+
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));

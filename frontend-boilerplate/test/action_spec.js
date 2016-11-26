@@ -1,19 +1,19 @@
 import expect from 'expect';
-import * as types from '../src/constants/conter';
-import { increment, decrement } from '../src/action/counter';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import * as actions from '../src/action/counter';
 
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
-describe('(Action)', () => {
-  it('increment type', () => {
-    const action = increment();
-    expect(action).toEqual({
-      type: types.INCREMENT,
-    });
-  });
-  it('decrement type', () => {
-    const action = decrement();
-    expect(action).toEqual({
-      type: types.DECREMENT,
-    });
+describe('(async actions)', () => {
+  it('delayIncrement', async () => {
+    const store = mockStore({counter: 0});
+
+    await store.dispatch(actions.delayIncrement());
+
+    expect(store.getActions(), [
+      { type: actions.types.INCREMENT },
+    ]);
   });
 });

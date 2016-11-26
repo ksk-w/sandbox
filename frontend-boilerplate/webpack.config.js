@@ -1,5 +1,5 @@
 module.exports = {
-  entry: './src/index.js',
+  entry: ['babel-polyfill', './src/index.js'],
   output: {
     path: './build',
     filename: 'bundle.js',
@@ -15,11 +15,8 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ['babel', 'eslint'],
+        loader: 'babel',
       },
     ],
-  },
-  eslint: {
-    configFile: '.eslintrc',
   },
 };

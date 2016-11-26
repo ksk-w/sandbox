@@ -1,5 +1,5 @@
 import expect from 'expect';
-import * as types from '../src/constants/conter';
+import { types } from '../src/action/counter';
 import { counter } from '../src/reducer/counter';
 
 describe('(Reducer)', () => {

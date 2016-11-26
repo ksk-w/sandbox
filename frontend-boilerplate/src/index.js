@@ -1,15 +1,21 @@
 import React from 'react';
 import { render } from 'react-dom';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import store from './store/configureStore';
-import Main from './container/main';
+import App from './components/App';
+import reducer from './reducer';
 
-injectTapEventPlugin();
+const store = createStore(
+  reducer,
+  applyMiddleware(thunk)
+);
+
+const moutNode = document.getElementById('app');
 
 render(
   <Provider store={store}>
-    <Main />
+    <App />
   </Provider>,
-  document.getElementById('app')
+  moutNode
 );
